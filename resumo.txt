@@ -1,0 +1,34 @@
+Meu paper eh sobre CS-PaperSum, A Large-Scale Dataset of AI-Generated Summaries for Scientific Papers.
+
+Ele apresenta uma solução para um problema que vem acontecendo com o grande crescimento de artigos científicos em ciência da computação. Com isso se torna difícil acompanhar as novas tendências de pesquisa e extrair insights importantes.
+Entao esse CS-PaperSum eh um conjunto de dados em larga escala mais de 91mil artigos retirados de 31 conferencias de alto nível de ciência da computacao, enriquecidos com resumos estruturados e gerados por IA usando o ChatGPT.
+No decorrer do artigo ele mostra quais ferramentas utilizou para avaliar a qualidade do resumo, se extraiu as palavras chaves corretamente e apresenta um estudo de caso sobre tendencias de pesquisa IA.
+
+
+Na introdução aqui ele rotorna a ideia de rápida expansão da literatura cientifica  em ciência da computação criou desafios significativos para os
+pesquisadores que tentam se manter informados sobre novos desenvolvimentos, acompanhar tendências emergentes e sintetizar insights de um número esmagador de publicações. Destaca que eh impraticável	fazer isso de forma manual. Fala que existem repositories open source como  Semantic Scholar Open Research Corpus (S2ORC) e o Microsoft Academic Graph (MAG), fornecem informações bibliográficas, resumos e redes de citação, mas carecem de resumos estruturados que capturem as contribuições centrais, metodologias e direções de pesquisa futura.
+
+Vários conjuntos de dados em larga escala (como S2ORC e MAG) fornecem acesso a artigos científicos e metadados, facilitando estudos bibliométricos, mas carecem de resumos de pesquisa estruturados. A sumarização automática de artigos científicos tem sido amplamente estudada em PLN (Processamento de Linguagem Natural), com avanços recentes alavancando a sumarização abstrativa neural (como SciBERT (is a version of Google's BERT
+model pre-trained specifically on millions of scientific texts to accurately
+understand academic jargon) e SPECTER - Scientific Paper Embeddings using Citation-informed TransformERs-). O CS-PAPERSUM estende essa pesquisa integrando resumos gerados pelo ChatGPT, fornecendo um novo recurso para
+avaliar a sumarização baseada em LLM no domínio científico.
+
+3.1 Coleta de Dados e Conteúdo
+Coletamos artigos de acesso aberto usando a API do Semantic Scholar, focando nas principais conferências de ciência da computação. O conjunto final abrange 91.919 artigos de 31 conferências (de 2017 a 2024), cobrindo IA, visão computacional, PLN, teoria computacional e arquitetura. Para cada artigo, extraímos: Título, Autores, Conferência, ano, resumo e contagem de citações. A extração da conclusão foi realizada via GROBID, convertendo PDFs em XML.
+3.2 e 3.3 Estatísticas e Afiliações Produtivas
+A distribuição revela conferências de alto impacto (NeurIPS, CVPR, ACL, etc.) e um aumento constante de publicações ao longo dos anos. A análise das afiliações mostra a dominância de universidades de elite (MIT, Stanford, CMU, etc.), forte presença de laboratórios da indústria (Google, DeepMind, Microsoft) .
+3.4 Conferências Influentes
+A influência, medida pela mediana de citações, coloca conferências de IA e visão computacional (CVPR, ICLR, ICCV) no topo. Além da IA, conferências de segurança (NDSS, USENIX) e linguagens/arquitetura (PLDI, ASPLOS) demonstram influência substancial, sublinhando a importância da cibersegurança e da computação paralela.
+
+4. Resumindo os Artigos
+Para aumentar a utilidade, geramos resumos estruturados de cada artigo usando o ChatGPT (GPT-3.5).
+Solicitamos ao modelo que extraísse os principais insights em um formato de lista estruturada a partir do
+título, resumo e conclusão. O formato padrão inclui: Principais Conclusões, Importância, Modelo/Método
+Proposto, Desempenho, Eficácia e Trabalhos Futuros.
+4.1 Avaliação de Qualidade
+Avaliamos a confiabilidade via alinhamento de embedding (usando SciBERT e t-SNE) e análise de sobreposição de palavras-chave (usando KeyBERT). Os resultados indicam que os resumos retêm fortemente a semântica, as características e as palavras-chave originais, validando a eficácia do ChatGPT neste domínio.
+4.2 Estudo de Caso: Identificando Tendências de Pesquisa
+Analisamos tendências na NeurIPS, AAAI, EMNLP e ICCV. Na NeurIPS, o foco migrou de aprendizagem por reforço clássica para Redes Neurais em Grafos (GNNs) e aprendizado autossupervisionado. Na AAAI, há um crescimento no foco de IA confiável, ética e colaboração humano-IA. A EMNLP mudou drasticamente da tradução estatística para transformers, RAG (Geração Aumentada por Recuperação) e sintonia de instruções. Na ICCV, o campo passou da detecção clássica para campos de radiância neural (NeRFs) e modelos de difusão.
+
+5. Conclusão
+Introduzimos o CS-PAPERSUM, um conjunto de dados enriquecido que fornece resumos padronizados para preencher a lacuna entre dados bibliográficos e insights acionáveis. O dataset permite análise de tendências e fornece base para sistemas futuros baseados em RAG e sumarização multi-documento para a descoberta científica.
